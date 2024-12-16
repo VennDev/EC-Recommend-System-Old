@@ -1,0 +1,30 @@
+app_settings:
+  port: 9999
+  name: "SECommerce-Recommender"
+  middleware:
+    origins: ["*"]
+    credentials: true
+    methods: ["*"]
+    headers: ["*"]
+
+redis:
+  host: "venndev.redis.cache.windows.net"
+  port: 6380
+  password: "VJTLTIg1q8KuZ0VcIStMGfPoRpEbavifLAzCaBCNufQ="
+  ssl: true
+
+database:
+  host: "venndev.mysql.database.azure.com"
+  port: 3306
+  user: "sql12749417"
+  password: "xsgyeANBRZ@@@"
+  name: "shop"
+  ssl_verify_cert: false
+
+system:
+  recommend:
+    search_hint:
+      key_redis: "products_cache"
+      name_table_target: "product"
+      columns_target:
+        - "title"

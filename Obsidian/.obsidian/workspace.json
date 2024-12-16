@@ -1,0 +1,170 @@
+{
+  "main": {
+    "id": "ec521942fee3cf29",
+    "type": "split",
+    "children": [
+      {
+        "id": "725a382b9fc86360",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7eed4c5427a3e1c9",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Tab mới"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4e3a65200f4c4752",
+    "type": "split",
+    "children": [
+      {
+        "id": "68554db926495923",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0261c5dd0d6485c2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Trình duyệt tệp"
+            }
+          },
+          {
+            "id": "c8868c63fd37b9f2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Tìm kiếm"
+            }
+          },
+          {
+            "id": "59780ed4cfdb5b12",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Đánh dấu"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5c09b50d02831bc3",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8336916fb2e91bb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8ab12f6cb56865c4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Tổng quan hệ thống/Tổng quan hệ thống.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Liên kết đến của Tổng quan hệ thống"
+            }
+          },
+          {
+            "id": "4100dc310d1e7f30",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Tổng quan hệ thống/Tổng quan hệ thống.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Liên kết đi ra từ Tổng quan hệ thống"
+            }
+          },
+          {
+            "id": "2912988f91bb0c90",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "1915d2f061b8f810",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Tổng quan hệ thống/Tổng quan hệ thống.md"
+              },
+              "icon": "lucide-list",
+              "title": "Đề cương của Tổng quan hệ thống"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Mở bộ chuyển đổi nhanh": false,
+      "graph:Mở xem biểu đồ": false,
+      "canvas:Tạo bảng mới": false,
+      "daily-notes:Mở ghi chú hôm nay": false,
+      "templates:Chèn mẫu": false,
+      "command-palette:Mở khay lệnh": false
+    }
+  },
+  "active": "7eed4c5427a3e1c9",
+  "lastOpenFiles": [
+    "Tổng quan hệ thống/Tổng quan hệ thống.md",
+    "Dự án/Lịch làm việc.md",
+    "Tổng quan hệ thống/Chưa đặt tên.md",
+    "Tổng quan hệ thống",
+    "Lịch làm việc/Chưa đặt tên.canvas",
+    "Dự án"
+  ]
+}

@@ -1,0 +1,21 @@
+import redis
+from utils import Config
+
+
+class Redis:
+    def __init__(self) -> None:
+        pass
+
+    @staticmethod
+    def get_redis_connection():
+        redis_config = Config().get("redis")
+        if redis_config == None:
+            raise Exception("Dữ liệu cấu hình hệ thống không tồn tại")
+
+        return redis.StrictRedis(
+            host=redis_config["host"],
+            port=redis_config["port"],
+            password=redis_config["password"],
+            ssl=redis_config["ssl"],
+            decode_responses=True,
+        )

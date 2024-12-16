@@ -1,0 +1,51 @@
+system:
+  recommend_ai:
+
+    # Đây là mô hình SVD
+    svd:
+      model_a:
+        description: "Model dùng để huấn luyện gợi 1 theo hành vi người dùng."
+        training_time:
+          days: 0
+          hours: 1
+          minutes: 0
+          seconds: 0
+        model_path: "model.pkl"
+        learning_tables:
+          user:
+            columns:
+              - "id"
+              - "name"
+              - "lastname"
+              - "email"
+              - "gender"
+              - "birthday"
+          product:
+            columns:
+              - "id"
+              - "title"
+              - "description"
+              - "price"
+              - "categoryId"
+          interactions:
+            columns:
+              - "productId"
+              - "action"
+              - "userId"
+              - "clicks"
+        replace_columns_tables:
+          user:
+            - "id->userId"
+          product:
+            - "id->productId"
+        rules_merge_data:
+          start_target: "interactions"
+          merge_columns:
+            user:
+              - "userId"
+            product:
+              - "productId"
+        matrix:
+          index: "userId"
+          columns: "productId"
+          values: "clicks"
