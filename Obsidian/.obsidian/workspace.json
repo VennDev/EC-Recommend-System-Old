@@ -11,10 +11,14 @@
             "id": "7eed4c5427a3e1c9",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Tổng quan hệ thống/Tổng quan hệ thống.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Tab mới"
+              "title": "Tổng quan hệ thống"
             }
           }
         ]
