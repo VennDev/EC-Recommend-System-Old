@@ -5,9 +5,9 @@
 
 # Thành phần hệ thống
 
-Ngôn ngữ sử dụng: `Python`
-Mô hình quản lý: `modular design`
-Các thư viện chính sử dụng:
+1. Ngôn ngữ sử dụng: `Python`
+2. Mô hình quản lý:`modular design`
+3. Các thư viện chính sử dụng:
 
 - FastAPI ( `Sử dụng làm quản lý chính trong việc tạo ra các routers xử lý api` )
 - RapidFuzz ( `Sử dụng để phân tích đưa ra kết quả dành cho việc tìm kiếm sp` )
