@@ -1,15 +1,5 @@
 "use client";
 
-// *********************
-// Role of the component: Component that displays all orders on admin dashboard page
-// Name of the component: AdminOrders.tsx
-// Developer: Aleksandar Kuzmanovic
-// Version: 1.0
-// Component call: <AdminOrders />
-// Input parameters: No input parameters
-// Output: Table with all orders
-// *********************
-
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -67,7 +57,9 @@ const AdminOrders = () => {
                     <div className="flex items-center gap-5">
                       <div>
                         <div className="font-bold">{order?.name}</div>
-                        <div className="text-sm opacity-50">{order?.country}</div>
+                        <div className="text-sm opacity-50">
+                          {order?.country}
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -82,7 +74,9 @@ const AdminOrders = () => {
                     <p>${order?.total}</p>
                   </td>
 
-                  <td>{ new Date(Date.parse(order?.dateTime)).toDateString() }</td>
+                  <td>
+                    {new Date(Date.parse(order?.dateTime)).toDateString()}
+                  </td>
                   <th>
                     <Link
                       href={`/admin/orders/${order?.id}`}

@@ -1,0 +1,67 @@
+<mxfile host="65bd71144e">
+    <diagram id="DC99Lzol3jvFANDa86ud" name="Page-1">
+        <mxGraphModel dx="1098" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="1">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="node1" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;Config&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;arbitrary_types_allowed : bool&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="163" y="-1060" width="183" height="69" as="geometry"/>
+                </mxCell>
+                <mxCell id="node2" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;DataHandler&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;data : Dict[str, TrainData]&lt;/font&gt;&lt;/div&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;clear_data()&lt;br/&gt;get_all_data()&lt;br/&gt;get_data(key)&lt;br/&gt;insert_data(key: str, data: TrainData)&lt;br/&gt;merge_data(data_config: dict)&lt;br/&gt;remove_data(key)&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="368" y="-240" width="222" height="221.2" as="geometry"/>
+                </mxCell>
+                <mxCell id="node3" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;ModelData&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;data_config : Optional[dict]&lt;br/&gt;data_handle&lt;br/&gt;data_matrix : DataFrame&lt;br/&gt;data_training : DataFrame&lt;br/&gt;last_time_update : NoneType&lt;br/&gt;model_name : str&lt;br/&gt;training_time : int&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="371" y="-490.00000000000006" width="219" height="159" as="geometry"/>
+                </mxCell>
+                <mxCell id="node6" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;SVDModel&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;data_model&lt;br/&gt;stop_event : Event&lt;/font&gt;&lt;/div&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;get_data_config_matrix()&lt;br/&gt;get_data_model(): ModelData&lt;br/&gt;get_name_model(): str&lt;br/&gt;get_type_model(): str&lt;br/&gt;logger()&lt;br/&gt;run()&lt;br/&gt;stop()&lt;br/&gt;train()&lt;br/&gt;update_data()&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="368.5" y="-840" width="221.5" height="245.8" as="geometry"/>
+                </mxCell>
+                <mxCell id="node4" value="&lt;font style=&quot;font-size: 14.0px;&quot; face=&quot;Times New Roman,serif&quot; color=&quot;#000000&quot;&gt;IModel&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;div&gt;&lt;i&gt;&lt;font style=&quot;font-size: 14.0px;&quot; face=&quot;Times New Roman,serif&quot; color=&quot;#000000&quot;&gt;get_data_model(): ModelData&lt;br&gt;get_name_model(): str&lt;br&gt;get_type_model(): str&lt;br&gt;logger(): Logger&lt;br&gt;run()&lt;br&gt;stop()&lt;br&gt;train()&lt;/font&gt;&lt;/i&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="368" y="-1100" width="222" height="203.8" as="geometry"/>
+                </mxCell>
+                <mxCell id="node5" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;LoggerAI&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;get_logger(add_text): Logger&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="-950" width="176" height="70.79999999999995" as="geometry"/>
+                </mxCell>
+                <mxCell id="node7" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;PConfig&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;calculate_training_time(data_training_time: dict): int&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="-840" width="306" height="70.79999999999995" as="geometry"/>
+                </mxCell>
+                <mxCell id="node8" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;SystemAI&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;run()&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="-1060.0000000000002" width="71" height="70.79999999999995" as="geometry"/>
+                </mxCell>
+                <mxCell id="node9" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;TrainData&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;train_data : DataFrame&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="-950" width="143" height="69" as="geometry"/>
+                </mxCell>
+                <mxCell id="node10" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;TypesModel&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;name&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="-840" width="85" height="69" as="geometry"/>
+                </mxCell>
+                <mxCell id="node11" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;UtilsTypeModel&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;get_list_types_model(): List[str]&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="-730" width="193" height="70.79999999999995" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" style="html=1;endArrow=block;dashed=0;endFill=1;startArrow=none;startFill=0;fillColor=black;strokeColor=black;strokeWidth=1;rounded=0;exitX=0.5000;exitY=0.0000;entryX=0.5000;entryY=1.0000;" parent="1" source="node2" target="node3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.5" y="-331.24" as="sourcePoint"/>
+                        <mxPoint x="459.5" y="-370.94000000000005" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="label_edge1" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='green'&gt;data_handle&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];" parent="edge1" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge2" style="html=1;endArrow=block;dashed=0;endFill=1;startArrow=none;startFill=0;fillColor=black;strokeColor=black;strokeWidth=1;rounded=0;exitX=0.5000;exitY=0.0000;entryX=0.5000;entryY=1.0000;" parent="1" source="node3" target="node6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.5" y="-542.4000000000001" as="sourcePoint"/>
+                        <mxPoint x="459.5" y="-581.9300000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="label_edge2" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='green'&gt;data_model&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];" parent="edge2" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge3" style="html=1;endArrow=block;dashed=0;endFill=1;startArrow=none;startFill=0;fillColor=black;strokeColor=black;strokeWidth=1;rounded=0;exitX=0.5000;exitY=0.0000;entryX=0.5000;entryY=1.0000;" parent="1" source="node6" target="node4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="459.5" y="-798.36" as="sourcePoint"/>
+                        <mxPoint x="459.5" y="-825.8000000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -1,0 +1,25 @@
+<mxfile host="65bd71144e">
+    <diagram id="Uhx6BRqsGX-gBQP1plMp" name="Page-1">
+        <mxGraphModel dx="1098" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="1">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="node1" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;LoggerServer&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;get_logger(): Logger&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="-1058.4" width="130" height="70.80000000000001" as="geometry"/>
+                </mxCell>
+                <mxCell id="node2" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;RecommendationResponse&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;recommendations : list[dict]&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="168.5" y="-1057.5" width="171" height="69" as="geometry"/>
+                </mxCell>
+                <mxCell id="node3" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;Redis&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;get_redis_connection()&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="357.5" y="-1058.4" width="141" height="70.80000000000001" as="geometry"/>
+                </mxCell>
+                <mxCell id="node4" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;SQLProvider&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;config : dict&lt;br/&gt;connection_pool : MySQLConnectionPool&lt;/font&gt;&lt;/div&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;execute_query(query: str, params: tuple)&lt;br/&gt;execute_update(query: str, params: tuple)&lt;br/&gt;get_connection()&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="-1057.5" width="250" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="node5" value="&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;SuggestionsResponse&lt;/font&gt;&lt;hr size='1'/&gt;&lt;div&gt;&lt;font style='font-size: 14.0px;' face='Times New Roman,serif' color='#000000'&gt;suggestions : list&lt;/font&gt;&lt;/div&gt;" style="verticalAlign=middle;html=1;rounded=0;labelBackgroundColor=none;strokeColor=black;fillColor=none;strokeWidth=1;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="-960" width="134" height="69" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

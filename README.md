@@ -19,7 +19,7 @@
 # Tính năng
 
 - Có sẵn các api cơ bản xử lý các tác vụ của một hệ thống gợi ý.
-- Có hệ thống tùy chỉnh cho phép người dùng có thể huấn luyện và tạo nhiều loại mô hình huấn luyện cách đơn giản thông qua cài đặt tùy chỉnh theo định dạng file `yml`.
+- Có hệ thống tùy chỉnh cho phép người dùng có thể huấn luyện và tạo nhiều loại mô hình AI theo dạng SVD (Singular Value Decomposition) huấn luyện cách đơn giản thông qua cài đặt tùy chỉnh theo định dạng file `yml`.
 - Có sử dụng Redis dành cho việc tối ưu hóa các truy vấn đến từ database.
 - Các Database hỗ trợ: `MYSQL`
 
