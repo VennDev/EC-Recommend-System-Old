@@ -1,6 +1,6 @@
 # EC-Recommend-System
 
-- Hệ thống chính phát triển nằm trong folder: `API`
+- Hệ thống chính phát triển nằm trong folder: `API` (Các folder khác chỉ nhằm mục đích nghiên cứu dự án và dựng chạy thử nghiệm các tính năng từ hệ thống)
 - Hệ thống gợi ý sản phẩm cá nhân hóa cho các website phần mềm Thương Mai Điện Tử.
 
 # Thành phần hệ thống
