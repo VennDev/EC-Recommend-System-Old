@@ -10,7 +10,7 @@ config_recommend = Config().get_nested_value("system.recommend")
 
 def get_products():
     if not config_recommend:
-        LoggerServer().get_logger().log_error("Dữ liệu cấu hình không được tìm thấy!")
+        LoggerServer().get_logger().log_error("Dữ liệu cài đặt của hệ thống recommend không được tìm thấy!")
         return []
     config_search_hint = config_recommend["search_hint"]
     redis_client = Redis.get_redis_connection()
@@ -32,7 +32,6 @@ def get_products():
         )
         redis_client.setex(cache_key, timedelta(seconds=3600), json.dumps(products))
         return products
-
 
 def hint_search(query, product_list, n=5):
     results = process.extract(query, product_list, limit=n, score_cutoff=50)

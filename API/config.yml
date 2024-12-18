@@ -1,18 +1,29 @@
+# Cấu hình hệ thống
 app_settings:
   port: 9999
   name: "SECommerce-Recommender"
   middleware:
+    # Có thể dùng chỉ cho phép đường dẫn được chỉ định để yêu cầu tới API
     origins: ["*"]
+
+    # Có yêu cầu chứng chỉ
     credentials: true
+
+    # Các phương thức được cho phép sử dụng
     methods: ["*"]
+
+    # Các dạng headers được cho phép
     headers: ["*"]
 
+# Cấu hình Redis dành cho việc tối ưu hóa các truy vấn đến từ database
 redis:
   host: "venndev.redis.cache.windows.net"
   port: 6380
   password: "VJTLTIg1q8KuZ0VcIStMGfPoRpEbavifLAzCaBCNufQ="
   ssl: true
 
+# Cấu hình database
+# Chỉ hỗ trợ MySQL
 database:
   host: "venndev.mysql.database.azure.com"
   port: 3306
@@ -21,10 +32,20 @@ database:
   name: "shop"
   ssl_verify_cert: false
 
+# Cấu hình hệ thống gợi ý
 system:
   recommend:
+
+    # Cấu hình gợi ý tìm kiếm dành cho người dùng
     search_hint:
-      key_redis: "products_cache"
+      key_redis: "search_hint_cache"
       name_table_target: "product"
       columns_target:
         - "title"
+
+    # Cấu hình gợi ý theo loại sản phẩm
+    recommend_like_product:
+      key_redis: "recommend_like_product_cache"
+      name_table_target: "product"
+      columns_target:
+        - "category"

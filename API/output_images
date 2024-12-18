@@ -1,0 +1,59 @@
+// YAML Diagram
+digraph {
+	app_settings
+	port
+	app_settings -> port
+	name
+	app_settings -> name
+	middleware
+	app_settings -> middleware
+	origins
+	middleware -> origins
+	origins_0 [label="*"]
+	origins -> origins_0
+	credentials
+	middleware -> credentials
+	methods
+	middleware -> methods
+	methods_0 [label="*"]
+	methods -> methods_0
+	headers
+	middleware -> headers
+	headers_0 [label="*"]
+	headers -> headers_0
+	redis
+	host
+	redis -> host
+	port
+	redis -> port
+	password
+	redis -> password
+	ssl
+	redis -> ssl
+	database
+	host
+	database -> host
+	port
+	database -> port
+	user
+	database -> user
+	password
+	database -> password
+	name
+	database -> name
+	ssl_verify_cert
+	database -> ssl_verify_cert
+	system
+	recommend
+	system -> recommend
+	search_hint
+	recommend -> search_hint
+	key_redis
+	search_hint -> key_redis
+	name_table_target
+	search_hint -> name_table_target
+	columns_target
+	search_hint -> columns_target
+	columns_target_0 [label=title]
+	columns_target -> columns_target_0
+}

@@ -3,16 +3,27 @@ system:
 
     # Đây là mô hình SVD
     svd:
+
+      # Tên mô hình cần huấn luyện
       model_a:
+        # Phần mô tả dành cho mô hình này
         description: "Model dùng để huấn luyện gợi 1 theo hành vi người dùng."
+
+        # Thời gian cho kỳ huấn luyện mô hình
         training_time:
           days: 0
           hours: 1
           minutes: 0
           seconds: 0
+
+        # Đường dẫn sử dụng để lưu mô hình
         model_path: "model.pkl"
+
+        # Danh sách các bảng sử dụng nhằm mục đích để huấn luyện mô hình
         learning_tables:
+          # Tên bảng
           user:
+            # Danh sách các cột
             columns:
               - "id"
               - "name"
@@ -33,19 +44,53 @@ system:
               - "action"
               - "userId"
               - "clicks"
+
+        # Cấu hình sử dụng nhằm mục đích chuyển đổi các thuộc tính
+        #   cần chuyển đổi tên cột khi truy vấn dữ liệu từ database
+        #   ví dụ như cần chuyển đổi "id" thành "userId"
+        #   cần chuyển đổi "id" thành "productId"
         replace_columns_tables:
           user:
             - "id->userId"
           product:
             - "id->productId"
+
+        # khi truy vấn dữ liệu từ database. Chúng ta còn một bước
+        #   chuyển đổi cơ sở dữ liệu thành một tập hợp chung.
+        #   Nên cần luật gộp dữ liệu này.
         rules_merge_data:
+
+          # Cột bắt đầu để sử dụng cho lần gộp
           start_target: "interactions"
+
+          # Các cột sẽ gộp với "start_target"
           merge_columns:
+
+            # Tên bảng
             user:
+              # Tên các cột trong bảng 
+              #   (lưu ý phải tính toán trước cả những cột đã được chuyển đổi
+              #   trong "replace_columns_tables")
               - "userId"
+
+            # Tên bảng
             product:
+              # Tên các cót trong bảng
+              #   (lưu ý phải tính toán trước cả những cót đã được chuyển đổi
+              #   trong "replace_columns_tables")
               - "productId"
+
+        # Khi đã hoàn thành các bước trên
+        #   bước này được sử dụng để tạo ra một khung matrix
+        #   để sử dụng huấn luyện cho mô hình loại SVD
         matrix:
+
+          # Tên loại "index" được sử dụng cho mô hình SVD
+          #   được hiểu như khóa chính của bảng
           index: "userId"
+
+          # Tên các cột được sử dụng cho mô hình SVD
           columns: "productId"
+
+          # Tên giá trị cần sử dụng để lấy đánh giá mô hình
           values: "clicks"

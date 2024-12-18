@@ -5,8 +5,8 @@ from ai.utils.types_model import TypesModel, UtilsTypeModel
 from ai.utils.logger import LoggerAI
 from utils.config import Config
 
-class SystemAI:
 
+class SystemAI:
     def __init__(self) -> None:
         pass
 
@@ -22,12 +22,15 @@ class SystemAI:
                 if model_type == TypesModel.SVD_TYPE.value:
                     SVDModel(case, value).run()
 
+        # Đăng ký hàm dấu hiệu dừng luồng con đang chạy
         def signal_handler(sig, frame):
             LoggerAI().get_logger().log_info("Chương trình đang dừng!")
             exit(0)
 
         signal.signal(signal.SIGINT, signal_handler)
-        LoggerAI().get_logger().log_info("Chương trình đang chạy... Nhấn Ctrl+C để dừng.\n")
+        LoggerAI().get_logger().log_info(
+            "Chương trình đang chạy... Nhấn Ctrl+C để dừng.\n"
+        )
 
         while True:
             time.sleep(1)

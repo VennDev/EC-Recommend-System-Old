@@ -6,7 +6,6 @@ class Logger:
 
     child_path = ""
     name_path = "logs/"
-
     add_text = ""
 
     def __init__(self, child_path = "", add_text = ""):

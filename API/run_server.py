@@ -1,5 +1,5 @@
-from logging import Logger
 import uvicorn
+from logging import Logger
 from app.utils.logger import LoggerServer
 from utils import Config
 from app.main import app

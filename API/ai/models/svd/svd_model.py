@@ -39,6 +39,7 @@ class SVDModel(IModel):
     def logger(self):
         return LoggerAI().get_logger(f"[{self.get_type_model()}] " + f"[{self.get_name_model()}]")
 
+    # Training system
     def train(self):
         while not self.stop_event.is_set():
             data_model = self.get_data_model()
@@ -65,9 +66,9 @@ class SVDModel(IModel):
                 merge_all = list(set(merge_all))
 
                 self.logger().log_info(
-                    f"Các cột có trong danh sách data_training: {data_model.data_training.columns}"
+                    f"Các cột có trong danh sách data_training: {data_model.data_training.columns}"
                 )
-                self.logger().log_info(f"Đã gộp tất cả các cột sau: {merge_all}")
+                self.logger().log_info(f"Đã gộp tất cả các cột sau: {merge_all}")
 
                 if not set(merge_all).issubset(data_model.data_training.columns):
                     self.logger().log_error(
@@ -119,18 +120,18 @@ class SVDModel(IModel):
                 self.logger().log_line()
             except Exception as e:
                 self.logger().log_error(
-                    f"Xảy ra lỗi trong lúc xử lý huấn luyện mô hình: {str(e)}"
+                    f"Xảy ra lỗi khi đang huấn luyện mô hình {str(e)}"
                 )
             self.stop_event.wait(data_model.training_time)
 
     def run(self):
         thread = threading.Thread(target=self.train, daemon=True)
         thread.start()
-        self.logger().log_info("Việc huấn luyện đang được diễn ra!")
+        self.logger().log_info("Việc huấn luyện đang được diễn ra!")
 
     def stop(self):
         self.stop_event.set()
-        self.logger().log_warning("Việc huấn luyện đã đồi dừng!")
+        self.logger().log_info("Việc huấn luyện đã bị tạm dừng!")
 
     def get_data_config_matrix(self):
         config = self.get_data_model().data_config["matrix"]
@@ -165,7 +166,7 @@ class SVDModel(IModel):
                 result = TrainData(train_data=pd_result)
                 data_model.data_handle.insert_data(table, result)
 
-            # Gộp các bảng lại
+            # Gộp các bảng lại
             data_model.data_training = data_model.data_handle.merge_data(data_model.data_config)
 
             # Xử lý dữ liệu Matrix
@@ -176,4 +177,4 @@ class SVDModel(IModel):
                 values=config_matrix["values"],
             )
         except Exception as e:
-            self.logger().log_error(f"Lỗi tại hàm update_data: {str(e)}")
+            self.logger().log_error(f"Lỗi tại hàm update_data: {str(e)}")
