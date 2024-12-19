@@ -1,0 +1,5 @@
+digraph "classes_Hệ_thống" {
+rankdir=BT
+charset="utf-8"
+"logger.logger.Logger" [color="black", fontcolor="black", label=<{Logger|add_text : str<br ALIGN="LEFT"/>child_path : str<br ALIGN="LEFT"/>name_path : str<br ALIGN="LEFT"/>|log(text: str)<br ALIGN="LEFT"/>log_critical(text: str)<br ALIGN="LEFT"/>log_debug(text: str)<br ALIGN="LEFT"/>log_error(text: str)<br ALIGN="LEFT"/>log_exception(exception: Exception)<br ALIGN="LEFT"/>log_info(text: str)<br ALIGN="LEFT"/>log_line()<br ALIGN="LEFT"/>log_request(request: str)<br ALIGN="LEFT"/>log_response(response: str)<br ALIGN="LEFT"/>log_traceback(traceback: str)<br ALIGN="LEFT"/>log_warning(text: str)<br ALIGN="LEFT"/>set_add_text(add_text)<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
+}

@@ -1,7 +1,6 @@
 from datetime import datetime
 import os
 
-
 class Logger:
 
     child_path = ""

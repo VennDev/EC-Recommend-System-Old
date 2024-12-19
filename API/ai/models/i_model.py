@@ -25,6 +25,9 @@ class IModel(ABC):
     def train(self):
         pass
 
+    def recommend(self, needed: any, num_recommendations: int = 5):
+        pass 
+
     @abstractmethod
     def run(self):
         pass

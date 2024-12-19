@@ -141,6 +141,30 @@ class SVDModel(IModel):
             "values": config["values"],
         }
 
+    def recommend(self, needed: any, num_recommendations: int = 5):
+        try:
+            data_model = self.get_data_model()
+            model_path = data_model.data_config["model_path"]
+            model, _ = dump.load(model_path)
+            if not data_model.data_training.empty:
+                all_items = data_model.data_training[self.get_data_config_matrix()["columns"][0]].unique()
+                rated_items = data_model.data_training[data_model.data_training[self.get_data_config_matrix()["index"][0]] == needed][self.get_data_config_matrix()["columns"][0]].tolist()
+                unrated_items = [item for item in all_items if item not in rated_items]
+                predictions = []
+                for item in unrated_items:
+                    pred = model.predict(needed, item)
+                    predictions.append((item, pred.est))
+                predictions.sort(key=lambda x: x[1], reverse=True)
+                recommendations = predictions[:num_recommendations]
+                self.logger().log_info(f"Gợi ý cho user_id {needed}: {recommendations}")
+                return recommendations
+            else:
+                self.logger().log_error("Dữ liệu huấn luyện trống! Không thể đưa ra gợi ý.")
+                return []
+        except Exception as e:
+            self.logger().log_error(f"Xảy ra lỗi khi đưa ra gợi ý: {str(e)}")
+            return []
+
     def update_data(self):
         try:
             data_model = self.get_data_model()

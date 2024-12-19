@@ -1,12 +1,13 @@
 from datetime import timedelta
 from mysql.connector import pooling
 from utils import Config
-
+from app.utils.logger import LoggerServer
 
 class SQLProvider:
     def __init__(self):
         db_config = Config().get("database")
         if db_config == None:
+            LoggerServer().get_logger().log_error("Dữ liệu cấu hình hệ thống không tồn tại")
             raise Exception("Dữ liệu cấu hình hệ thống không tồn tại")
 
         self.config = {

@@ -1,1 +1,1 @@
-from . import re_products, search_hint
+from . import  search_hint, re_like_category_product

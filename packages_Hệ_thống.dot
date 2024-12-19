@@ -1,0 +1,7 @@
+digraph "packages_Hệ_thống" {
+rankdir=BT
+charset="utf-8"
+"logger" [color="black", label=<logger>, shape="box", style="solid"];
+"logger.logger" [color="black", label=<logger.logger>, shape="box", style="solid"];
+"logger" -> "logger" [arrowhead="open", arrowtail="none"];
+}

@@ -42,10 +42,25 @@ system:
       name_table_target: "product"
       columns_target:
         - "title"
+      column_key: "title"
+
+      # Số lượng cần gợi ý tối đa
+      limit: 5
+
+      # Số điểm đánh giá gần giống
+      score_cutoff: 50
 
     # Cấu hình gợi ý theo loại sản phẩm
-    recommend_like_product:
-      key_redis: "recommend_like_product_cache"
+    recommend_like_category:
+      key_redis: "recommend_like_category_cache"
       name_table_target: "product"
       columns_target:
-        - "category"
+        - "id"
+        - "categoryId"
+      column_key: "categoryId"
+
+      # Số lượng cần gợi ý tối đa
+      limit: 5
+
+      # Số điểm đánh giá gần giống
+      score_cutoff: 30
