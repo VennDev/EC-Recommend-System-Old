@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+actor "Client Application" as Client
+
+usecase "Xem danh sách sản phẩm theo loại" as UC_ViewProductList {
+  :Tiền điều kiện:
+  - Client đã được xác thực qua CORS
+}
+
+Client --> UC_ViewProductList
+
+note right of UC_ViewProductList
+* Luồng chính:
+1. Client yêu cầu danh sách sản phẩm theo loại
+2. Hệ thống trả về danh sách sản phẩm phù hợp
+* Luồng phụ:
+- Xử lý trường hợp không tìm thấy sản phẩm
+end note
+@enduml

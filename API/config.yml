@@ -63,4 +63,4 @@ system:
       limit: 5
 
       # Số điểm đánh giá gần giống
-      score_cutoff: 30
+      score_cutoff: 90

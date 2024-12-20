@@ -1,6 +1,6 @@
 from logger import Logger
 
-class LoggerAI:
+class LoggerAI(Logger):
 
-    def get_logger(self, add_text = "") -> Logger:
-        return Logger("ai/", add_text)
+    def __init__(self, add_text = ""):
+        super().__init__("ai/", add_text)

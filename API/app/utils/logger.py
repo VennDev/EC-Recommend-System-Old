@@ -1,6 +1,6 @@
 from logger import Logger
 
-class LoggerServer:
+class LoggerServer(Logger):
 
-    def get_logger(self) -> Logger:
-        return Logger("server/")
+    def __init__(self, add_text = ""):
+        super().__init__("server/", add_text)

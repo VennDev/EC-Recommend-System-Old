@@ -37,7 +37,7 @@ class SVDModel(IModel):
         return str(self.get_data_model().model_name)
     
     def logger(self):
-        return LoggerAI().get_logger(f"[{self.get_type_model()}] " + f"[{self.get_name_model()}]")
+        return LoggerAI(f"[{self.get_type_model()}] " + f"[{self.get_name_model()}]")
 
     # Training system
     def train(self):

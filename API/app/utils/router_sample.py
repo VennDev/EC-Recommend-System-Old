@@ -20,7 +20,7 @@ def process_simple_recommend_router(index_target: str, input_data: any):
         data_column_key = [value.get(column_key) for value in data if column_key in value]
         
         limit = config_data.get("limit", 10)
-        score_cutoff = config_data.get("score_cutoff", 10)
+        score_cutoff = config_data.get("score_cutoff", 90)
 
         suggestions = process_query_with_rapidfuzz(input_data, data_column_key, limit, score_cutoff)
 

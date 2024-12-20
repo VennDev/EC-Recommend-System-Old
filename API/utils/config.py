@@ -1,5 +1,6 @@
 import os
 from ruamel.yaml import YAML
+from logger import Logger
 
 class Config:
     def __init__(self, config_path="config.yml"):
@@ -11,12 +12,14 @@ class Config:
     def reload(self):
         """Đọc lại file cấu hình"""
         if not os.path.exists(self.config_path):
+            Logger().log_error(f"Không tìm thấy file cấu hình: {self.config_path}")
             raise FileNotFoundError(f"Không tìm thấy file cấu hình: {self.config_path}")
         
         with open(self.config_path, "r") as file:
             try:
                 self.config = self.yaml.load(file)
             except Exception as e:
+                Logger().log_error(f"Không thể đọc file cấu hình: {str(e)}")
                 raise ValueError(f"Không thể đọc file cấu hình: {str(e)}")
 
     def save(self):
@@ -48,10 +51,8 @@ class Config:
         """Đặt giá trị cho key lồng nhau (nested) dạng a.b.c"""
         keys = key.split(".")
         data = self.config
-
         for k in keys[:-1]:
             if k not in data or not isinstance(data[k], dict):
                 data[k] = {}
             data = data[k]
-
         data[keys[-1]] = value
