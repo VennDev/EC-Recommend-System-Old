@@ -1,6 +1,6 @@
 import threading
 import pandas as pd
-from typing import Optional
+from typing import Optional, Any
 from ai import utils
 from ai.data.model_data import ModelData
 from ai.models.i_model import IModel
@@ -15,27 +15,27 @@ from sklearn.preprocessing import LabelEncoder
 
 
 class SVDModel(IModel):
-
     stop_event = threading.Event()
-    data_model = ModelData() 
+    data_model = ModelData()
 
     def __init__(self, model_name: str, data_config: Optional[dict] = None):
-        if data_config == None:
+        if data_config is None:
             raise Exception("Thiếu cấu hình AI")
         self.get_data_model().model_name = model_name
         self.get_data_model().data_config = data_config
-        self.get_data_model().training_time = PConfig().calculate_training_time(data_config["training_time"])
-        self.logger().log_info("Hệ thống AI đã được khởi tạo")
+        self.get_data_model().training_time = PConfig().calculate_training_time(
+            data_config["training_time"]
+        )
 
     def get_data_model(self) -> ModelData:
         return self.data_model
 
     def get_type_model(self) -> str:
-            return str(utils.TypesModel.SVD_TYPE.value)
+        return str(utils.TypesModel.SVD_TYPE.value)
 
     def get_name_model(self) -> str:
         return str(self.get_data_model().model_name)
-    
+
     def logger(self):
         return LoggerAI(f"[{self.get_type_model()}] " + f"[{self.get_name_model()}]")
 
@@ -77,7 +77,7 @@ class SVDModel(IModel):
                     return
 
                 if len(data_model.data_training[merge_all]) == 0:
-                    LoggerAI().get_logger().log_error("Dữ liệu huấn luyện rỗng!")
+                    self.logger().log_error("Dữ liệu huấn luyện rỗng!")
                     return
 
                 for col in merge_all:
@@ -94,7 +94,7 @@ class SVDModel(IModel):
                             )
 
                 self.logger().log_info(
-                    f"Dữ liệu sau khi chuyển đổi: {data_model.data_training[merge_all].head()}"
+                    f"Dữ liệu sau khi chuyển đổi: {data_model.data_training[merge_all].head()}"
                 )
 
                 reader = Reader(rating_scale=(1, 5))
@@ -113,10 +113,8 @@ class SVDModel(IModel):
                 )
 
                 # Lưu mô hình
-                # Dùng dump để lưu mô hình
                 dump.dump(data_model.data_config["model_path"], algo=model)
                 self.logger().log_info("Mô hình đã được lưu!")
-
                 self.logger().log_line()
             except Exception as e:
                 self.logger().log_error(
@@ -141,28 +139,73 @@ class SVDModel(IModel):
             "values": config["values"],
         }
 
-    def recommend(self, needed: any, num_recommendations: int = 5):
+    """
+    @param needed: ID người dùng
+    @param num_recommendations: số mô hình gợi ý
+    """
+
+    async def recommend(self, needed: Any, num_recommendations: int = 5) -> Any:
         try:
             data_model = self.get_data_model()
             model_path = data_model.data_config["model_path"]
-            model, _ = dump.load(model_path)
-            if not data_model.data_training.empty:
-                all_items = data_model.data_training[self.get_data_config_matrix()["columns"][0]].unique()
-                rated_items = data_model.data_training[data_model.data_training[self.get_data_config_matrix()["index"][0]] == needed][self.get_data_config_matrix()["columns"][0]].tolist()
-                unrated_items = [item for item in all_items if item not in rated_items]
-                predictions = []
-                for item in unrated_items:
-                    pred = model.predict(needed, item)
-                    predictions.append((item, pred.est))
-                predictions.sort(key=lambda x: x[1], reverse=True)
-                recommendations = predictions[:num_recommendations]
-                self.logger().log_info(f"Gợi ý cho user_id {needed}: {recommendations}")
-                return recommendations
-            else:
-                self.logger().log_error("Dữ liệu huấn luyện trống! Không thể đưa ra gợi ý.")
+
+            import os
+
+            if not os.path.exists(model_path):
+                raise Exception(f"Không tìm thấy file mô hình tại {model_path}")
+
+            _, model = dump.load(model_path)
+            if model is None:
+                raise Exception("Mô hình tải lên không hợp lệ hoặc bị thiếu!")
+
+            if data_model.data_training is None or data_model.data_training.empty:
+                raise Exception(
+                    "Dữ liệu huấn luyện trống, cần cập nhật dữ liệu trước khi gợi ý."
+                )
+
+            config_matrix = self.get_data_config_matrix()
+            user_col = (
+                config_matrix["index"][0]
+                if isinstance(config_matrix["index"], list)
+                else config_matrix["index"]
+            )
+            item_col = (
+                config_matrix["columns"][0]
+                if isinstance(config_matrix["columns"], list)
+                else config_matrix["columns"]
+            )
+
+            all_items = data_model.data_training[item_col].unique().tolist()
+            user_rated_items = data_model.data_training[
+                data_model.data_training[user_col] == needed
+            ][item_col].tolist()
+            items_to_predict = [
+                item for item in all_items if item not in user_rated_items
+            ]
+
+            if not items_to_predict:
                 return []
+
+            predictions = []
+            for item in items_to_predict:
+                try:
+                    pred = float(model.predict(uid=str(needed), iid=str(item)).est)
+                    predictions.append((str(item), pred))
+                except Exception as e:
+                    self.logger().log_error(
+                        f"Lỗi khi dự đoán cho item {item}: {str(e)}"
+                    )
+                    continue
+
+            predictions.sort(key=lambda x: x[1], reverse=True)
+            top_recommendations = predictions[:num_recommendations]
+
+            self.logger().log_info(
+                f"Gợi ý cho người dùng '{needed}': {top_recommendations}"
+            )
+            return top_recommendations
         except Exception as e:
-            self.logger().log_error(f"Xảy ra lỗi khi đưa ra gợi ý: {str(e)}")
+            self.logger().log_error(f"Lỗi khi gợi ý: {str(e)}")
             return []
 
     def update_data(self):
@@ -170,7 +213,7 @@ class SVDModel(IModel):
             data_model = self.get_data_model()
             data_model.data_handle.clear_data()
 
-            # Tương lai sử dụng thêm redis
+            # Tương lai sử dụng Redis để phát triển phần này thêm
             learning_tables = data_model.data_config["learning_tables"]
             replace_cols_tables = data_model.data_config["replace_columns_tables"]
 
@@ -191,9 +234,11 @@ class SVDModel(IModel):
                 data_model.data_handle.insert_data(table, result)
 
             # Gộp các bảng lại
-            data_model.data_training = data_model.data_handle.merge_data(data_model.data_config)
+            data_model.data_training = data_model.data_handle.merge_data(
+                data_model.data_config
+            )
 
-            # Xử lý dữ liệu Matrix
+            # Xử lý dữ liệu Matrix
             config_matrix = self.get_data_config_matrix()
             data_model.data_matrix = data_model.data_training.pivot_table(
                 index=config_matrix["index"],

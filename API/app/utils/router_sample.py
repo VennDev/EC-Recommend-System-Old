@@ -28,5 +28,5 @@ def process_simple_recommend_router(index_target: str, input_data: any):
         list_suggestions = [item[column_key] for item in data if item[column_key] in just_first_case]
         return {"suggestions": list_suggestions}
     except Exception as e:
-        LoggerServer().get_logger().log_error("Đã có lỗi xảy ra trong quá trình xử lý hàm process_simple_recommend_router: " + str(e))
+        LoggerServer().log_error("Đã có lỗi xảy ra trong quá trình xử lý hàm process_simple_recommend_router: " + str(e))
         return {"error": str(e)}

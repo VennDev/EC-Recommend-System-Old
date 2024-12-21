@@ -1,4 +1,4 @@
-import { CategoryMenu, Hero, Incentives, IntroducingSection, Newsletter, ProductsDiscounted, ProductsSection } from "@/components";
+import { CategoryMenu, Hero, Incentives, IntroducingSection, Newsletter, ProductsDiscounted, ProductsRecommend, ProductsSection } from "@/components";
 
 export default function Home() {
   return (
@@ -6,7 +6,8 @@ export default function Home() {
       <Hero />
       <IntroducingSection />
       <CategoryMenu />
-      <ProductsDiscounted />
+      {/* <ProductsDiscounted /> */}
+      <ProductsRecommend />
       <ProductsSection />
     </>
   );

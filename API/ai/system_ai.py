@@ -1,9 +1,10 @@
-import signal
-import time
+# import signal
+# import time
 from ai.models.svd.svd_model import SVDModel
 from ai.utils.types_model import TypesModel, UtilsTypeModel
 from ai.utils.logger import LoggerAI
 from utils.config import Config
+
 
 class SystemAI:
     def __init__(self) -> None:
@@ -12,7 +13,7 @@ class SystemAI:
     def run(self):
         LoggerAI().log_info("Hệ thống AI đang được chạy!")
         config = Config("ai_config.yml").get_nested_value("system.recommend_ai")
-        if config == None:
+        if config is None:
             raise Exception("Lỗi không thể tìm thấy dữ liệu để huấn luyện AI!")
         list_types_model = UtilsTypeModel().get_list_types_model()
         for model_type in list_types_model:
@@ -21,15 +22,15 @@ class SystemAI:
                 if model_type == TypesModel.SVD_TYPE.value:
                     SVDModel(case, value).run()
 
-        # Đăng ký hàm dấu hiệu dừng luồng con đang chạy
-        def signal_handler(sig, frame):
-            LoggerAI().log_info("Chương trình đang dừng!")
-            exit(0)
+        # # Đăng ký hàm dấu hiệu dừng luồng con đang chạy
+        # def signal_handler(sig, frame):
+        #     LoggerAI().log_info("Chương trình đang dừng!")
+        #     exit(0)
 
-        signal.signal(signal.SIGINT, signal_handler)
-        LoggerAI().log_info(
-            "Chương trình đang chạy... Nhấn Ctrl+C để dừng.\n"
-        )
+        # signal.signal(signal.SIGINT, signal_handler)
+        # LoggerAI().log_info(
+        #     "Chương trình đang chạy... Nhấn Ctrl+C để dừng.\n"
+        # )
 
-        while True:
-            time.sleep(1)
+        # while True:
+        #     time.sleep(1)

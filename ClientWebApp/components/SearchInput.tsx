@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
-const apiSearch = "http://127.0.0.1:9999/search-product/";  // API endpoint
+const apiSearch = "http://127.0.0.1:9999/search-hint/";  // API endpoint
 
 const SearchInput = () => {
   const [searchInput, setSearchInput] = useState<string>("");

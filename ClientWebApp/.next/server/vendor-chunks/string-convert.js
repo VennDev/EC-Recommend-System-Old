@@ -1,4 +1,3 @@
-"use strict";
 /*
  * ATTENTION: An "eval-source-map" devtool has been used.
  * This devtool is neither made for production nor for readable output files.
@@ -17,7 +16,7 @@ exports.modules = {
   \*****************************************************/
 /***/ ((module) => {
 
-eval("\nvar camel2hyphen = function(str) {\n    return str.replace(/[A-Z]/g, function(match) {\n        return \"-\" + match.toLowerCase();\n    }).toLowerCase();\n};\nmodule.exports = camel2hyphen;\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvc3RyaW5nLWNvbnZlcnQvY2FtZWwyaHlwaGVuLmpzIiwibWFwcGluZ3MiOiI7QUFBQSxJQUFJQSxlQUFlLFNBQVVDLEdBQUc7SUFDOUIsT0FBT0EsSUFDRUMsT0FBTyxDQUFDLFVBQVUsU0FBVUMsS0FBSztRQUNoQyxPQUFPLE1BQU1BLE1BQU1DLFdBQVc7SUFDaEMsR0FDQ0EsV0FBVztBQUN0QjtBQUVBQyxPQUFPQyxPQUFPLEdBQUdOIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vZWxlY3Ryb25pYy1lY29tbWVyY2Utc2hvcC13aXRoLWRhc2hib2FyZC8uL25vZGVfbW9kdWxlcy9zdHJpbmctY29udmVydC9jYW1lbDJoeXBoZW4uanM/NmU4MCJdLCJzb3VyY2VzQ29udGVudCI6WyJ2YXIgY2FtZWwyaHlwaGVuID0gZnVuY3Rpb24gKHN0cikge1xuICByZXR1cm4gc3RyXG4gICAgICAgICAgLnJlcGxhY2UoL1tBLVpdL2csIGZ1bmN0aW9uIChtYXRjaCkge1xuICAgICAgICAgICAgcmV0dXJuICctJyArIG1hdGNoLnRvTG93ZXJDYXNlKCk7XG4gICAgICAgICAgfSlcbiAgICAgICAgICAudG9Mb3dlckNhc2UoKTtcbn07XG5cbm1vZHVsZS5leHBvcnRzID0gY2FtZWwyaHlwaGVuOyJdLCJuYW1lcyI6WyJjYW1lbDJoeXBoZW4iLCJzdHIiLCJyZXBsYWNlIiwibWF0Y2giLCJ0b0xvd2VyQ2FzZSIsIm1vZHVsZSIsImV4cG9ydHMiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/string-convert/camel2hyphen.js\n");
+eval("var camel2hyphen = function (str) {\n  return str\n          .replace(/[A-Z]/g, function (match) {\n            return '-' + match.toLowerCase();\n          })\n          .toLowerCase();\n};\n\nmodule.exports = camel2hyphen;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvc3RyaW5nLWNvbnZlcnQvY2FtZWwyaHlwaGVuLmpzIiwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsV0FBVztBQUNYO0FBQ0E7O0FBRUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9lbGVjdHJvbmljLWVjb21tZXJjZS1zaG9wLXdpdGgtZGFzaGJvYXJkLy4vbm9kZV9tb2R1bGVzL3N0cmluZy1jb252ZXJ0L2NhbWVsMmh5cGhlbi5qcz9jZjY1Il0sInNvdXJjZXNDb250ZW50IjpbInZhciBjYW1lbDJoeXBoZW4gPSBmdW5jdGlvbiAoc3RyKSB7XG4gIHJldHVybiBzdHJcbiAgICAgICAgICAucmVwbGFjZSgvW0EtWl0vZywgZnVuY3Rpb24gKG1hdGNoKSB7XG4gICAgICAgICAgICByZXR1cm4gJy0nICsgbWF0Y2gudG9Mb3dlckNhc2UoKTtcbiAgICAgICAgICB9KVxuICAgICAgICAgIC50b0xvd2VyQ2FzZSgpO1xufTtcblxubW9kdWxlLmV4cG9ydHMgPSBjYW1lbDJoeXBoZW47Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/string-convert/camel2hyphen.js\n");
 
 /***/ })
 

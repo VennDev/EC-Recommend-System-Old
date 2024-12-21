@@ -1,4 +1,3 @@
-from datetime import timedelta
 from mysql.connector import pooling
 from utils import Config
 from app.utils.logger import LoggerServer

@@ -7,7 +7,7 @@ app_settings:
     origins: ["*"]
 
     # Có yêu cầu chứng chỉ
-    credentials: true
+    credentials: false 
 
     # Các phương thức được cho phép sử dụng
     methods: ["*"]

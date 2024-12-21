@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
+from typing import Any
 from ai.data.model_data import ModelData
 from logger import Logger
 
 
 class IModel(ABC):
-
     @abstractmethod
     def get_data_model(self) -> ModelData:
         pass
@@ -25,8 +25,8 @@ class IModel(ABC):
     def train(self):
         pass
 
-    def recommend(self, needed: any, num_recommendations: int = 5):
-        pass 
+    async def recommend(self, needed: Any, num_recommendations: int = 5) -> Any:
+        pass
 
     @abstractmethod
     def run(self):
