@@ -55,7 +55,7 @@ system:
           product:
             - "id->productId"
 
-        # khi truy vấn dữ liệu từ database. Chúng ta còn một bước
+        # Khi truy vấn dữ liệu từ database. Chúng ta còn một bước
         #   chuyển đổi cơ sở dữ liệu thành một tập hợp chung.
         #   Nên cần luật gộp dữ liệu này.
         rules_merge_data:

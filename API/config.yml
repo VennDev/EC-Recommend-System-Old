@@ -3,10 +3,10 @@ app_settings:
   port: 9999
   name: "SECommerce-Recommender"
   middleware:
-    # Có thể dùng chỉ cho phép đường dẫn được chỉ định để yêu cầu tới API
+    # Cho phép đường dẫn nào được chỉ định để yêu cầu tới API
     origins: ["*"]
 
-    # Có yêu cầu chứng chỉ
+    # Có yêu cầu chứng chỉ?
     credentials: false 
 
     # Các phương thức được cho phép sử dụng

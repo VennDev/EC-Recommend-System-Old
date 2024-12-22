@@ -6,13 +6,17 @@ from ai.data.model_data import ModelData
 from ai.models.i_model import IModel
 from ai.utils.logger import LoggerAI
 from ai.utils.pconfig import PConfig
-from app.db.mysql import SQLProvider
 from ai.schemas.train_data import TrainData
 from surprise import Dataset, Reader, SVD
 from surprise.model_selection import train_test_split
 from surprise import accuracy, dump
 from sklearn.preprocessing import LabelEncoder
-from app.metrics.counters import svd_precision_value_gauge, svd_precision_calculation_counter
+from app.db.mysql import SQLProvider
+from app.metrics.counters import (
+    svd_precision_value_gauge,
+    svd_precision_calculation_counter,
+)
+
 
 class SVDModel(IModel):
     stop_event = threading.Event()
@@ -118,8 +122,12 @@ class SVDModel(IModel):
                 self.logger().log_line()
 
                 # Cập nhật giá trị mô hình cho Prometheus
-                svd_precision_value_gauge.labels(model_name=self.get_name_model()).set(accuracy.rmse(predictions))
-                svd_precision_calculation_counter.labels(model_name=self.get_name_model()).inc()
+                svd_precision_value_gauge.labels(model_name=self.get_name_model()).set(
+                    accuracy.rmse(predictions)
+                )
+                svd_precision_calculation_counter.labels(
+                    model_name=self.get_name_model()
+                ).inc()
             except Exception as e:
                 self.logger().log_error(
                     f"Xảy ra lỗi khi đang huấn luyện mô hình {str(e)}"
@@ -147,7 +155,6 @@ class SVDModel(IModel):
     @param needed: ID người dùng
     @param num_recommendations: số mô hình gợi ý
     """
-
     async def recommend(self, needed: Any, num_recommendations: int = 5) -> Any:
         try:
             data_model = self.get_data_model()
