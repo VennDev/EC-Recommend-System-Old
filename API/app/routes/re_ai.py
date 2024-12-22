@@ -1,4 +1,3 @@
-import asyncio
 from fastapi import APIRouter
 from typing import Union
 from utils import Config

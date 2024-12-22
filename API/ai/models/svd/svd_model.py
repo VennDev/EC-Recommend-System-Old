@@ -12,7 +12,7 @@ from surprise import Dataset, Reader, SVD
 from surprise.model_selection import train_test_split
 from surprise import accuracy, dump
 from sklearn.preprocessing import LabelEncoder
-
+from app.metrics.counters import svd_precision_value_gauge, svd_precision_calculation_counter
 
 class SVDModel(IModel):
     stop_event = threading.Event()
@@ -116,6 +116,10 @@ class SVDModel(IModel):
                 dump.dump(data_model.data_config["model_path"], algo=model)
                 self.logger().log_info("Mô hình đã được lưu!")
                 self.logger().log_line()
+
+                # Cập nhật giá trị mô hình cho Prometheus
+                svd_precision_value_gauge.labels(model_name=self.get_name_model()).set(accuracy.rmse(predictions))
+                svd_precision_calculation_counter.labels(model_name=self.get_name_model()).inc()
             except Exception as e:
                 self.logger().log_error(
                     f"Xảy ra lỗi khi đang huấn luyện mô hình {str(e)}"
