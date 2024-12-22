@@ -15,6 +15,8 @@
 - mysql ( `Sử dụng để kết nối cơ sở dữ liệu` )
 - redis ( `Sử dụng trong việc lưu các cache dữ liệu` )
 - Surprise ( `Sử dụng để xử lý các công việc của AI` )
+- Ruamel.yaml ( `Sử dụng để quản lý các file cấu hình yaml hệ thống` )
+- Prometheus ( `Sử dụng để tạo quản lý các số liệu thống kê và tình trạng của máy chủ API cũng như hệ thống huấn luyện` )
 
 # Tính năng
 
@@ -28,3 +30,4 @@
 - Do hệ thống được phát triển trong thời gian khá ngắn nên sẽ có nhiều thiếu sót về mặt tối ưu cũng như các tính năng nâng cao có thể còn thiếu ở một hệ thống gợi ý thương mai.
 - Cần có hỗ trợ nhiều loại Database hơn.
 - Cần có một khung quản lý các routers từ các ngôn ngữ tốt hơn thay vì `Python` có thể là từ `Golang` và các ngôn ngữ khác.
+- Cần có một trang quản lý các cấu hình hệ thống qua giao diện UI để dễ dàng trong việc sử dụng.
