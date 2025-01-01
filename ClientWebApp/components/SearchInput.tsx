@@ -28,12 +28,13 @@ const SearchInput = () => {
     const timeout = setTimeout(async () => {
       if (searchValue.trim().length > 0) {
         try {
-          const res = await fetch(`${apiSearch}${searchValue.toLocaleLowerCase()}`);
+          const res = await fetch(`${apiSearch}${searchValue.toLocaleLowerCase()}/5`);
           if (res.status === 200) {
             const matches = await res.json();
             console.log(matches);
-            setFilteredSuggestions(matches.suggestions || []);
-            setDropdownVisible(matches.suggestions?.length > 0);
+            let products = matches.suggestions.map((obj: { title: string; }) => obj.title) || [];
+            setFilteredSuggestions(products);
+            setDropdownVisible(products.length > 0);
           } else {
             console.error("Failed to fetch suggestions:", res.statusText);
             setFilteredSuggestions([]);

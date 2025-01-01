@@ -1,3 +1,3 @@
-from .re_products_service import recommend_products
+from .re_products_service import recommend_products_simple
 from .process_query_service import process_query_with_rapidfuzz
-from .process_simple_re_service import process_simple_recommend
+from .process_simple_re_service import process_data_simple_recommend

@@ -46,7 +46,13 @@ const ProductsRecommend = () => {
                 })
                 .then((data: UserData) => {
                     setUserData(data);
-                    fetch(`http://localhost:9999/recommend-ai/svd/model_a/${data.id}/5`)
+                    fetch(`http://localhost:9999/recommend-ai/svd/model_a/${data.id}/5`, {
+                        method: "GET",
+                        headers: {
+                            "Authorization": "Bearer valid-token", // Token phù hợp với backend
+                            "Content-Type": "application/json",   // Loại dữ liệu bạn gửi
+                        },
+                    })
                         .then((res) => {
                             if (!res.ok) {
                                 throw new Error(`API error: ${res.status}`);
@@ -77,7 +83,7 @@ const ProductsRecommend = () => {
                                         setListProducts(currentProducts => [...currentProducts, productData]);
                                     })
                                     .catch(err => {
-                                        console.error(`Error fetching product ${productId}:`, err);
+                                        console.error("Error in fetching product data:", err);
                                     });
                             });
 

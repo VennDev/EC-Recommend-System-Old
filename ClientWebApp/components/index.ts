@@ -9,6 +9,7 @@ export { default as ProductItem } from "./ProductItem";
 export { default as ProductsSection } from "./ProductsSection";
 export { default as ProductsDiscounted } from "./ProductsDiscounted";
 export { default as ProductsRecommend } from "./ProductsRecommend";
+export { default as ProductsLike } from "./ProductsLike";
 export { default as Newsletter } from "./Newsletter";
 export { default as Footer } from "./Footer";
 export { default as Filters } from "./Filters";
@@ -46,3 +47,4 @@ export { default as StatsElement } from "./StatsElement";
 export { default as DashboardProductTable } from "./DashboardProductTable";
 export { default as AdminOrders } from "./AdminOrders";
 export { default as OrderItem } from "./OrderItem";
+

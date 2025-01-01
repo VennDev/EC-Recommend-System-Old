@@ -4,9 +4,9 @@ from datetime import timedelta
 from app.db.redis import Redis
 from app.utils.logger import LoggerServer 
 
-def process_simple_recommend(index_data: str) -> any:
+def process_data_simple_recommend(index_data: str) -> any:
     from app.db.mysql import SQLProvider
-    config_recommend = Config().get_nested_value("system.recommend")
+    config_recommend = Config().get_nested_value("system.recommends_available")
     if not config_recommend:
         LoggerServer().log_error("Dữ liệu cài đặt của hệ thống recommend không được tìm thấy!")
         return []

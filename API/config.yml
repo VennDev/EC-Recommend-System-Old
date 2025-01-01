@@ -7,7 +7,7 @@ app_settings:
     origins: ["*"]
 
     # Có yêu cầu chứng chỉ?
-    credentials: false 
+    credentials: false
 
     # Các phương thức được cho phép sử dụng
     methods: ["*"]
@@ -34,33 +34,24 @@ database:
 
 # Cấu hình hệ thống gợi ý
 system:
-  recommend:
-
+  # Các cấu hình gợi ý hệ thống có sẵn
+  recommends_available:
     # Cấu hình gợi ý tìm kiếm dành cho người dùng
     search_hint:
       key_redis: "search_hint_cache"
       name_table_target: "product"
       columns_target:
         - "title"
-      column_key: "title"
-
-      # Số lượng cần gợi ý tối đa
-      limit: 5
+      columns_key:
+        - "title"
 
       # Số điểm đánh giá gần giống
       score_cutoff: 50
 
     # Cấu hình gợi ý theo loại sản phẩm
     recommend_like_category:
-      key_redis: "recommend_like_category_cache"
       name_table_target: "product"
       columns_target:
         - "id"
-        - "categoryId"
-      column_key: "categoryId"
+      category_column: "categoryId"
 
-      # Số lượng cần gợi ý tối đa
-      limit: 5
-
-      # Số điểm đánh giá gần giống
-      score_cutoff: 90

@@ -1,4 +1,5 @@
 import threading
+import asyncio
 import pandas as pd
 from typing import Optional, Any
 from ai import utils
@@ -17,7 +18,9 @@ from app.metrics.counters import (
     svd_precision_calculation_counter,
 )
 
-
+"""
+    Đây là mô hình lọc cộng tác SVD, sử dụng cho phép tìm kiếm gợi ý tìm kiếm gợi ý.
+"""
 class SVDModel(IModel):
     stop_event = threading.Event()
     data_model = ModelData()
@@ -30,6 +33,7 @@ class SVDModel(IModel):
         self.get_data_model().training_time = PConfig().calculate_training_time(
             data_config["training_time"]
         )
+        self.update_data()
 
     def get_data_model(self) -> ModelData:
         return self.data_model
@@ -187,9 +191,11 @@ class SVDModel(IModel):
             )
 
             all_items = data_model.data_training[item_col].unique().tolist()
+
             user_rated_items = data_model.data_training[
                 data_model.data_training[user_col] == needed
             ][item_col].tolist()
+
             items_to_predict = [
                 item for item in all_items if item not in user_rated_items
             ]
@@ -200,8 +206,9 @@ class SVDModel(IModel):
             predictions = []
             for item in items_to_predict:
                 try:
-                    pred = float(model.predict(uid=str(needed), iid=str(item)).est)
-                    predictions.append((str(item), pred))
+                    loop = asyncio.get_event_loop()
+                    pred = await loop.run_in_executor(None, lambda: model.predict(uid=str(needed), iid=str(item)))
+                    predictions.append((str(item), pred.est))
                 except Exception as e:
                     self.logger().log_error(
                         f"Lỗi khi dự đoán cho item {item}: {str(e)}"
@@ -214,6 +221,7 @@ class SVDModel(IModel):
             self.logger().log_info(
                 f"Gợi ý cho người dùng '{needed}': {top_recommendations}"
             )
+
             return top_recommendations
         except Exception as e:
             self.logger().log_error(f"Lỗi khi gợi ý: {str(e)}")

@@ -15,6 +15,7 @@ COPY requirements.txt /
 COPY run_server.py /
 COPY ai_config.yml /
 COPY config.yml /
+COPY model.pkl /
 
 WORKDIR /
 

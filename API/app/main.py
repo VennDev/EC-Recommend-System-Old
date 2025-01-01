@@ -12,7 +12,9 @@ if configData is None:
 configMiddleware = configData["middleware"]
 app = FastAPI(title=configData["name"], version="1.0.0")
 app.include_router(search_hint.router, tags=["Tìm kiếm"])
-app.include_router(re_like_category_product.router, tags=["Danh sách sản phẩm theo loại"])
+app.include_router(
+    re_like_category_product.router, tags=["Danh sách sản phẩm theo loại"]
+)
 app.include_router(re_ai.router, tags=["Danh sách sản phẩm phân tích AI"])
 app.add_middleware(
     CORSMiddleware,
@@ -24,6 +26,7 @@ app.add_middleware(
 
 # Sử dụng Prometheus để thống kê hệ thống
 instrumentator = Instrumentator()
-instrumentator.add(app)
+instrumentator.instrument(app)
 
 app.mount("/metrics", make_asgi_app())
+

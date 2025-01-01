@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "725a382b9fc86360",
+        "id": "1fec243b1a6ad5f0",
         "type": "tabs",
         "children": [
           {
-            "id": "7eed4c5427a3e1c9",
+            "id": "815c02e367c07dce",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -77,7 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 231.5
   },
   "right": {
     "id": "5c09b50d02831bc3",
@@ -162,10 +162,10 @@
       "command-palette:Mở khay lệnh": false
     }
   },
-  "active": "7eed4c5427a3e1c9",
+  "active": "815c02e367c07dce",
   "lastOpenFiles": [
-    "Tổng quan hệ thống/Tổng quan hệ thống.md",
     "Dự án/Lịch làm việc.md",
+    "Tổng quan hệ thống/Tổng quan hệ thống.md",
     "Tổng quan hệ thống/Chưa đặt tên.md",
     "Tổng quan hệ thống",
     "Lịch làm việc/Chưa đặt tên.canvas",
