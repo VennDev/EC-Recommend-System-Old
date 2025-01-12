@@ -1,7 +1,8 @@
 import threading
 import asyncio
 import pandas as pd
-from typing import Optional, Any
+from concurrent.futures import ThreadPoolExecutor
+from typing import Optional, Any, List, Tuple
 from ai import utils
 from ai.data.model_data import ModelData
 from ai.models.i_model import IModel
@@ -24,6 +25,7 @@ from app.metrics.counters import (
 class SVDModel(IModel):
     stop_event = threading.Event()
     data_model = ModelData()
+    executor = ThreadPoolExecutor(max_workers=4)
 
     def __init__(self, model_name: str, data_config: Optional[dict] = None):
         if data_config is None:
@@ -33,7 +35,6 @@ class SVDModel(IModel):
         self.get_data_model().training_time = PConfig().calculate_training_time(
             data_config["training_time"]
         )
-        self.update_data()
 
     def get_data_model(self) -> ModelData:
         return self.data_model
@@ -126,11 +127,13 @@ class SVDModel(IModel):
                 self.logger().log_line()
 
                 # Cập nhật giá trị mô hình cho Prometheus
-                svd_precision_value_gauge.labels(model_name=self.get_name_model()).set(
-                    accuracy.rmse(predictions)
-                )
+                svd_precision_value_gauge.labels(
+                    model_name=self.get_name_model(),
+                    model_type=self.get_type_model(),
+                ).set(accuracy.rmse(predictions))
                 svd_precision_calculation_counter.labels(
-                    model_name=self.get_name_model()
+                    model_name=self.get_name_model(),
+                    model_type=self.get_type_model(),
                 ).inc()
             except Exception as e:
                 self.logger().log_error(
@@ -159,25 +162,26 @@ class SVDModel(IModel):
     @param needed: ID người dùng
     @param num_recommendations: số mô hình gợi ý
     """
-    async def recommend(self, needed: Any, num_recommendations: int = 5) -> Any:
+    async def recommend(self, needed: Any, num_recommendations: int = 5) -> List[Tuple[str, float]]:
         try:
             data_model = self.get_data_model()
             model_path = data_model.data_config["model_path"]
 
             import os
 
+            # Kiểm tra đường dẫn model
             if not os.path.exists(model_path):
-                raise Exception(f"Không tìm thấy file mô hình tại {model_path}")
+                raise FileNotFoundError(f"Không tìm thấy file mô hình tại {model_path}")
 
             _, model = dump.load(model_path)
             if model is None:
-                raise Exception("Mô hình tải lên không hợp lệ hoặc bị thiếu!")
+                raise ValueError("Mô hình tải lên không hợp lệ hoặc bị thiếu!")
 
+            # Kiểm tra dữ liệu huấn luyện
             if data_model.data_training is None or data_model.data_training.empty:
-                raise Exception(
-                    "Dữ liệu huấn luyện trống, cần cập nhật dữ liệu trước khi gợi ý."
-                )
+                raise ValueError("Dữ liệu huấn luyện trống, cần cập nhật dữ liệu trước khi gợi ý.")
 
+            # Lấy cấu hình ma trận
             config_matrix = self.get_data_config_matrix()
             user_col = (
                 config_matrix["index"][0]
@@ -190,39 +194,47 @@ class SVDModel(IModel):
                 else config_matrix["columns"]
             )
 
-            all_items = data_model.data_training[item_col].unique().tolist()
-
-            user_rated_items = data_model.data_training[
-                data_model.data_training[user_col] == needed
-            ][item_col].tolist()
-
-            items_to_predict = [
-                item for item in all_items if item not in user_rated_items
-            ]
+            # Danh sách tất cả các items và items đã được đánh giá bởi người dùng
+            all_items = set(data_model.data_training[item_col].unique())
+            user_rated_items = set(
+                data_model.data_training[data_model.data_training[user_col] == needed][item_col]
+            )
+            items_to_predict = list(all_items - user_rated_items)
 
             if not items_to_predict:
                 return []
 
-            predictions = []
-            for item in items_to_predict:
-                try:
-                    loop = asyncio.get_event_loop()
-                    pred = await loop.run_in_executor(None, lambda: model.predict(uid=str(needed), iid=str(item)))
-                    predictions.append((str(item), pred.est))
-                except Exception as e:
-                    self.logger().log_error(
-                        f"Lỗi khi dự đoán cho item {item}: {str(e)}"
-                    )
-                    continue
+            # Hàm dự đoán một batch các items
+            async def predict_batch(items_batch):
+                loop = asyncio.get_event_loop()
+                predictions = await loop.run_in_executor(
+                    self.executor,
+                    lambda: [
+                        (str(item), model.predict(uid=str(needed), iid=str(item)).est)
+                        for item in items_batch
+                    ],
+                )
+                return predictions
 
-            predictions.sort(key=lambda x: x[1], reverse=True)
-            top_recommendations = predictions[:num_recommendations]
+            # Chia các items thành các batch nhỏ để tránh nghẽn tài nguyên
+            batch_size = 50
+            batches = [
+                items_to_predict[i : i + batch_size] for i in range(0, len(items_to_predict), batch_size)
+            ]
 
-            self.logger().log_info(
-                f"Gợi ý cho người dùng '{needed}': {top_recommendations}"
-            )
+            # Dự đoán trong các batch
+            results = []
+            for batch in batches:
+                batch_predictions = await predict_batch(batch)
+                results.extend(batch_predictions)
 
+            # Sắp xếp và lấy top recommendations
+            results.sort(key=lambda x: x[1], reverse=True)
+            top_recommendations = results[:num_recommendations]
+
+            self.logger().log_info(f"Gợi ý cho người dùng '{needed}': {top_recommendations}")
             return top_recommendations
+
         except Exception as e:
             self.logger().log_error(f"Lỗi khi gợi ý: {str(e)}")
             return []

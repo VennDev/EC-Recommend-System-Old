@@ -23,7 +23,7 @@ interface RecommendResponse {
     suggestions: string[];
 }
 
-const ProductsRecommend = () => {
+const ProductsRecommend = React.memo(() => {
     const router = useRouter();
     const [error, setError] = useState("");
     const [listProducts, setListProducts] = useState<Product[]>([]);
@@ -121,6 +121,6 @@ const ProductsRecommend = () => {
             </div>
         </div>
     );
-};
+});
 
 export default ProductsRecommend;
