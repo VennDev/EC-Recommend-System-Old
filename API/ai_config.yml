@@ -1,9 +1,7 @@
 system:
   recommend_ai:
-
     # Đây là mô hình SVD
     svd:
-
       # Tên mô hình cần huấn luyện
       model_a:
         # Phần mô tả dành cho mô hình này
@@ -59,16 +57,14 @@ system:
         #   chuyển đổi cơ sở dữ liệu thành một tập hợp chung.
         #   Nên cần luật gộp dữ liệu này.
         rules_merge_data:
-
           # Cột bắt đầu để sử dụng cho lần gộp
           start_target: "interactions"
 
           # Các cột sẽ gộp với "start_target"
           merge_columns:
-
             # Tên bảng
             user:
-              # Tên các cột trong bảng 
+              # Tên các cột trong bảng
               #   (lưu ý phải tính toán trước cả những cột đã được chuyển đổi
               #   trong "replace_columns_tables")
               - "userId"
@@ -84,12 +80,11 @@ system:
         #   bước này được sử dụng để tạo ra một khung matrix
         #   để sử dụng huấn luyện cho mô hình loại SVD
         matrix:
-
           # Tên loại "index" được sử dụng cho mô hình SVD
           #   được hiểu như khóa chính của bảng
           index: "userId"
 
-          # Tên các cột được sử dụng cho mô hình SVD
+          # Tên các cột được sử dụng cho mô hình SVD / array or string
           columns: "productId"
 
           # Tên giá trị cần sử dụng để lấy đánh giá mô hình

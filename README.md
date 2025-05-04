@@ -31,3 +31,10 @@
 - Cần có hỗ trợ nhiều loại Database hơn.
 - Cần có một khung quản lý các routers từ các ngôn ngữ tốt hơn thay vì `Python` có thể là từ `Golang` và các ngôn ngữ khác.
 - Cần có một trang quản lý các cấu hình hệ thống qua giao diện UI để dễ dàng trong việc sử dụng.
+
+
+
+
+
+
+o	Ngoài dữ liệu hành vi, đề tài dự kiến khám phá việc thu thập dữ liệu tâm lý, như nhận thức bản thân hoặc sở thích cá nhân, để làm phong phú thêm mô hình gợi ý. Nghiên cứu từ Frontiers đã chỉ ra rằng yếu tố tâm lý có thể cải thiện đáng kể hiệu quả của hệ thống gợi ý (Enhancing e-commerce recommendation systems through approach of buyer's self-construal). Đây là một hướng tiếp cận mới và bất ngờ, mở rộng phạm vi dữ liệu từ hành vi sang tâm lý học.

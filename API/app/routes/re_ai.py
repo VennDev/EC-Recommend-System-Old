@@ -12,6 +12,7 @@ from ai.models.svd import SVDModel
 router = APIRouter()
 executor = ProcessPoolExecutor()
 
+
 @router.get(
     "/recommend-ai/{type_model}/{name_model}/{needed}/{num_recommendations}",
     response_model=Union[SuggestionsResponse, ErrorResponse],
@@ -25,15 +26,13 @@ async def recommend_ai(
     )
     if config_data_model is None:
         return {"error": "Không tìm thấy mô hình AI"}
-    
+
     model = SVDModel(name_model, config_data_model)
 
     async def run_model_recommend():
         return await model.recommend(needed, num_recommendations)
 
-    loop = asyncio.get_event_loop()
-
-    # Sử dụng asyncio.to_thread để chạy coroutine bên trong thread executor
     result = await asyncio.to_thread(asyncio.run, run_model_recommend())
 
     return {"suggestions": result}
+

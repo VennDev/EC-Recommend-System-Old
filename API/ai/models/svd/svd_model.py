@@ -1,3 +1,4 @@
+from cProfile import label
 import threading
 import asyncio
 import pandas as pd
@@ -26,6 +27,7 @@ class SVDModel(IModel):
     stop_event = threading.Event()
     data_model = ModelData()
     executor = ThreadPoolExecutor(max_workers=4)
+    label_encoders = {}
 
     def __init__(self, model_name: str, data_config: Optional[dict] = None):
         if data_config is None:
@@ -96,6 +98,7 @@ class SVDModel(IModel):
                             data_model.data_training[col] = le.fit_transform(
                                 data_model.data_training[col]
                             )
+                            self.label_encoders[col] = le
                         else:
                             # Nếu không phải ID, kiểm tra và xử lý các giá trị chuỗi
                             data_model.data_training[col] = pd.to_numeric(
@@ -194,11 +197,21 @@ class SVDModel(IModel):
                 else config_matrix["columns"]
             )
 
+            # Mã hoa needed (ID người dùng gốc -> ID đã mã hóa)
+            if needed not in self.label_encoders[user_col].classes_:
+                self.logger().log_error(f"Người dùng '{needed}' không có trong dữ liệu huấn luyện!")
+                return []
+
+            encoded_needed = self.label_encoders[user_col].transform([needed])[0]
+
             # Danh sách tất cả các items và items đã được đánh giá bởi người dùng
             all_items = set(data_model.data_training[item_col].unique())
+
+            # Danh sách items chưa đánh giá bởi người dùng
             user_rated_items = set(
-                data_model.data_training[data_model.data_training[user_col] == needed][item_col]
+                data_model.data_training[data_model.data_training[user_col] == encoded_needed][item_col]
             )
+
             items_to_predict = list(all_items - user_rated_items)
 
             if not items_to_predict:
@@ -210,7 +223,7 @@ class SVDModel(IModel):
                 predictions = await loop.run_in_executor(
                     self.executor,
                     lambda: [
-                        (str(item), model.predict(uid=str(needed), iid=str(item)).est)
+                        (str(item), model.predict(uid=str(encoded_needed), iid=str(item)).est)
                         for item in items_batch
                     ],
                 )

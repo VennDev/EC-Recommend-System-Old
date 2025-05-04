@@ -17,12 +17,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/search/page.css",
-      "static/chunks/app/search/page.js"
-    ],
     "/product/[productSlug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

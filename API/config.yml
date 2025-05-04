@@ -17,18 +17,18 @@ app_settings:
 
 # Cấu hình Redis dành cho việc tối ưu hóa các truy vấn đến từ database
 redis:
-  host: "venndev.redis.cache.windows.net"
-  port: 6380
-  password: "VJTLTIg1q8KuZ0VcIStMGfPoRpEbavifLAzCaBCNufQ="
-  ssl: true
+  host: "redis-13812.c295.ap-southeast-1-1.ec2.redns.redis-cloud.com"
+  port: 13812
+  password: "bxELduyRenYkJb8l3G8FnB6XFOPhKJ09"
+  ssl: false
 
 # Cấu hình database
 # Chỉ hỗ trợ MySQL
 database:
-  host: "venndev.mysql.database.azure.com"
+  host: "host.docker.internal"
   port: 3306
-  user: "sql12749417"
-  password: "xsgyeANBRZ@@@"
+  user: "root"
+  password: "pokiwar0981"
   name: "shop"
   ssl_verify_cert: false
 
@@ -54,4 +54,3 @@ system:
       columns_target:
         - "id"
       category_column: "categoryId"
-
